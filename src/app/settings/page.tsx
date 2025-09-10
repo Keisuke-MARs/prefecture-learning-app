@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { storage, AppSettings } from '@/utils/storage';
+import { storage, AppSettings, UserProgress } from '@/utils/storage';
 import { regions } from '@/data/prefectures';
 
 export default function SettingsPage() {
@@ -11,14 +11,14 @@ export default function SettingsPage() {
         studyMode: 'mixed',
         selectedRegions: [],
     });
-    const [progress, setProgress] = useState<any[]>([]);
+    const [progress, setProgress] = useState<UserProgress[]>([]);
 
     useEffect(() => {
         setSettings(storage.getSettings());
         setProgress(storage.getProgress());
     }, []);
 
-    const handleSettingChange = (key: keyof AppSettings, value: any) => {
+    const handleSettingChange = (key: keyof AppSettings, value: string | string[] | boolean) => {
         const newSettings = { ...settings, [key]: value };
         setSettings(newSettings);
         storage.saveSettings(newSettings);

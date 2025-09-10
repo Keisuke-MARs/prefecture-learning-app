@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { prefectures, regions } from '@/data/prefectures';
-import { storage } from '@/utils/storage';
 
 export default function StudyPage() {
     const [currentIndex, setCurrentIndex] = useState(0);

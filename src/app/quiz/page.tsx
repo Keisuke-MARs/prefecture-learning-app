@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { prefectures, regions } from '@/data/prefectures';
 import { storage } from '@/utils/storage';
@@ -56,11 +56,11 @@ export default function QuizPage() {
         };
     };
 
-    const startNewQuestion = () => {
+    const startNewQuestion = useCallback(() => {
         setCurrentQuestion(generateQuestion());
         setSelectedAnswer('');
         setShowResult(false);
-    };
+    }, [selectedRegion, quizMode]);
 
     const handleAnswerSelect = (answer: string) => {
         if (showResult) return;
@@ -88,7 +88,7 @@ export default function QuizPage() {
 
     useEffect(() => {
         startNewQuestion();
-    }, [selectedRegion, quizMode]);
+    }, [selectedRegion, quizMode, startNewQuestion]);
 
     if (!currentQuestion) {
         return <div>Loading...</div>;
@@ -123,7 +123,7 @@ export default function QuizPage() {
 
                         <select
                             value={quizMode}
-                            onChange={(e) => setQuizMode(e.target.value as any)}
+                            onChange={(e) => setQuizMode(e.target.value as 'prefecture-to-capital' | 'capital-to-prefecture' | 'mixed')}
                             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                         >
                             <option value="mixed">ミックス</option>

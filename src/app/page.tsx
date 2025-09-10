@@ -2,16 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { storage } from '@/utils/storage';
+import { storage, UserProgress } from '@/utils/storage';
 import { prefectures } from '@/data/prefectures';
 
 export default function Home() {
-  const [progress, setProgress] = useState<any[]>([]);
-  const [settings, setSettings] = useState<any>(null);
+  const [progress, setProgress] = useState<UserProgress[]>([]);
 
   useEffect(() => {
     setProgress(storage.getProgress());
-    setSettings(storage.getSettings());
   }, []);
 
   const totalPrefectures = prefectures.length;
