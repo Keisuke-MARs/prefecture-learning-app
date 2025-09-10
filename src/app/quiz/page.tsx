@@ -60,7 +60,7 @@ export default function QuizPage() {
         setCurrentQuestion(generateQuestion());
         setSelectedAnswer('');
         setShowResult(false);
-    }, [selectedRegion, quizMode]);
+    }, [generateQuestion]);
 
     const handleAnswerSelect = (answer: string) => {
         if (showResult) return;
