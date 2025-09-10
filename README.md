@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 都道府県学習アプリ
 
-## Getting Started
+日本の47都道府県と県庁所在地を楽しく学習できるNext.jsアプリケーションです。
 
-First, run the development server:
+## 機能
+
+### 🏠 ホーム画面
+- 学習進捗の統計表示
+- 学習済み都道府県数、正解率、正解数、総回答数の確認
+- 各モードへのナビゲーション
+
+### 📚 学習モード
+- 都道府県と県庁所在地をカード形式で学習
+- 地方別フィルタリング機能
+- 進捗バーによる学習状況の可視化
+- 前後のナビゲーション
+
+### 🎯 クイズモード
+- 選択式クイズで知識をテスト
+- 3つのクイズタイプ：
+  - 都道府県→県庁所在地
+  - 県庁所在地→都道府県  
+  - ミックス（ランダム）
+- 地方別フィルタリング
+- リアルタイムスコア表示
+- 正解・不正解のフィードバック
+
+### ⚙️ 設定画面
+- クイズモードの設定
+- 学習対象地方の選択
+- 学習統計の確認
+- 進捗データの削除機能
+
+## 技術仕様
+
+- **フレームワーク**: Next.js 14 (App Router)
+- **言語**: TypeScript
+- **スタイリング**: Tailwind CSS
+- **データ保存**: ローカルストレージ
+- **レスポンシブデザイン**: モバイル・デスクトップ対応
+
+## データ構造
+
+### 都道府県データ
+- 47都道府県の完全データ
+- 地方別分類（北海道、東北、関東、中部、近畿、中国、四国、九州）
+
+### 学習進捗
+- 都道府県別の正解・不正解数
+- 最終学習日時の記録
+- ローカルストレージによる永続化
+
+## 開始方法
+
+開発サーバーを起動:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いてアプリを確認できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## プロジェクト構造
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── page.tsx          # ホーム画面
+│   ├── study/
+│   │   └── page.tsx      # 学習モード
+│   ├── quiz/
+│   │   └── page.tsx      # クイズモード
+│   ├── settings/
+│   │   └── page.tsx      # 設定画面
+│   └── globals.css       # グローバルスタイル
+├── data/
+│   └── prefectures.ts    # 都道府県データ
+└── utils/
+    └── storage.ts        # ローカルストレージ管理
+```
 
-## Learn More
+## 特徴
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **モダンなUI**: Tailwind CSSによる美しいデザイン
+- **アニメーション**: スムーズな画面遷移とフィードバック
+- **進捗管理**: 学習状況の詳細な記録と表示
+- **カスタマイズ**: 地方別学習やクイズモード選択
+- **レスポンシブ**: あらゆるデバイスサイズに対応
